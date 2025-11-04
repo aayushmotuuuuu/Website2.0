@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    body {
+        font-family: Arial, sans-serif;
+        overflow-x: hidden;
+    }
+
+    .page {
+        display: none;
+        min-height: 100vh;
+    }
+
+    .page.active {
+        display: block;
+    }
+
+    /* Page 1 - Login */
+    #page1 {
+        background: linear-gradient(to bottom, #232f3e, #131921);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+    }
+
+    .logo {
+        width: 200px;
+        margin-bottom: 40px;
+    }
+
+    .login-box {
+        background: white;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        text-align: center;
+    }
+
+    .login-box h2 {
+        color: #232f3e;
+        margin-bottom: 20px;
+    }
+
+    .login-box input {
+        width: 100%;
+        padding: 12px;
+        margin: 15px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    .login-box button {
+        width: 100%;
+        padding: 12px;
+        background: #ff9900;
+        border: none;
+        border-radius: 4px;
+        color: #232f3e;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .login-box button:hover {
+        background: #ffac31;
+    }
+
+    /* Page 2 */
+    #page2 {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+
+    #page2 h1 {
+        font-size: 3em;
+        margin-bottom: 30px;
+        animation: fadeIn 1.5s ease-in;
+    }
+
+    #page2 p {
+        font-size: 1.5em;
+        margin-bottom: 50px;
+        animation: fadeIn 2s ease-in;
+    }
+
+    .button-container {
+        display: flex;
+        gap: 30px;
+    }
+
+    .choice-btn {
+        padding: 20px 50px;
+        font-size: 1.3em;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.3s;
+        font-weight: bold;
+    }
+
+    .yes-btn {
+        background: #4CAF50;
+        color: white;
+    }
+
+    .no-btn {
+        background: #f44336;
+        color: white;
+    }
+
+    .choice-btn:hover {
+        transform: scale(1.1);
+    }
+
+    /* Page 3 & 4 - Book Pages */
+    .book-page {
+        background: #ffc0cb;
+        min-height: 100vh;
+        padding: 50px 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .book-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        padding: 60px;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        animation: bookOpen 1.5s ease-out;
+        position: relative;
+    }
+
+    @keyframes bookOpen {
+        0% {
+            transform: rotateY(-90deg);
+            opacity: 0;
+        }
+        100% {
+            transform: rotateY(0deg);
+            opacity: 1;
+        }
+    }
+
+    .poem-container {
+        color: goldenrod;
+        font-size: 1.3em;
+        line-height: 1.8;
+        text-align: center;
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .poem {
+        display: none;
+        animation: fadeInPoem 1s ease-in;
+    }
+
+    .poem.active {
+        display: block;
+    }
+
+    @keyframes fadeInPoem {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .heart {
+        position: absolute;
+        font-size: 2em;
+        color: #ff69b4;
+        animation: float 4s infinite ease-in-out;
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-30px) rotate(10deg);
+        }
+    }
+
+    .rabbit {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        font-size: 4em;
+        animation: hop 2s infinite;
+    }
+
+    @keyframes hop {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+
+    .next-btn {
+        display: block;
+        margin: 30px auto;
+        padding: 15px 40px;
+        background: goldenrod;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .next-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Page 4 - Old Paper Effect */
+    .old-paper-poem {
+        background: #f4e8d0;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+        border: 2px solid #d4b896;
+    }
+
+    /* Music Player */
+    .music-player {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+        background: rgba(255,255,255,0.95);
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .music-player iframe {
+        border-radius: 8px;
+    }
+
+    /* Page 5 - Photo Gallery */
+    #page5 {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        padding: 50px 20px;
+    }
+
+    .gallery-container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+    }
+
+    .gallery-container h2 {
+        text-align: center;
+        color: #f5576c;
+        margin-bottom: 30px;
+        font-size: 2em;
+    }
+
+    .photo-slideshow {
+        width: 100%;
+        height: 500px;
+        background: #f0f0f0;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .slide {
+        display: none;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        animation: fadeInSlide 0.8s ease-in;
+    }
+
+    .slide.active {
+        display: block;
+    }
+
+    @keyframes fadeInSlide {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .slide-controls {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .slide-btn {
+        padding: 12px 30px;
+        margin: 0 10px;
+        background: #f5576c;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .slide-btn:hover {
+        background: #d9435a;
+        transform: scale(1.05);
+    }
+
+    .slide-dots {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .dot {
+        height: 12px;
+        width: 12px;
+        margin: 0 5px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .dot.active {
+        background-color: #f5576c;
+        transform: scale(1.3);
+    }
+
+    /* Page 6 - Letter */
+    #page6 {
+        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        padding: 50px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .letter-container {
+        position: relative;
+    }
+
+    .envelope {
+        width: 400px;
+        height: 300px;
+        background: #f4e8d0;
+        border: 3px solid #d4b896;
+        border-radius: 10px;
+        position: relative;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .envelope:hover {
+        transform: scale(1.05);
+    }
+
+    .envelope-flap {
+        width: 0;
+        height: 0;
+        border-left: 200px solid transparent;
+        border-right: 200px solid transparent;
+        border-top: 150px solid #d4b896;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .envelope-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.5em;
+        color: #8b4513;
+        font-weight: bold;
+    }
+
+    .letter {
+        display: none;
+        max-width: 600px;
+        background: white;
+        padding: 50px;
+        border-radius: 10px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        animation: fadeIn 1s ease-in;
+    }
+
+    .letter.open {
+        display: block;
+    }
+
+    .letter-content {
+        font-size: 1.2em;
+        line-height: 1.8;
+        color: #333;
+    }
+
+    .typewriter {
+        opacity: 0;
+        animation: typewriter 0.1s forwards;
+    }
+
+    @keyframes typewriter {
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Page 7 - Timer */
+    #page7 {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        color: white;
+        text-align: center;
+    }
+
+    #page7 h1 {
+        font-size: 3em;
+        margin-bottom: 50px;
+    }
+
+    .timer-display {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        margin-top: 50px;
+    }
+
+    .timer-box {
+        background: rgba(255,255,255,0.2);
+        padding: 30px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+    }
+
+    .timer-box .number {
+        font-size: 4em;
+        font-weight: bold;
+        display: block;
+    }
+
+    .timer-box .label {
+        font-size: 1.2em;
+        margin-top: 10px;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .timer-display {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .button-container {
+            flex-direction: column;
+            gap: 15px;
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+    <!-- Page 1: Login -->
+    <div id="page1" class="page active">
+        <svg class="logo" viewBox="0 0 603 182" fill="none">
+            <path d="M374.3 143.8c-43.1 31.8-105.6 48.7-159.4 48.7-75.4 0-143.3-27.9-194.6-74.3-4-3.6-0.4-8.5 4.4-5.7 55.4 32.2 123.8 51.6 194.5 51.6 47.7 0 100.1-9.9 148.3-30.3 7.3-3.1 13.4 4.8 7 10z" fill="#FF9900"/>
+            <path d="M387.9 128.6c-5.5-7-36.4-3.3-50.3-1.7-4.2 0.5-4.9-3.2-1.1-5.9 24.6-17.3 65-12.3 69.7-6.5 4.7 5.8-1.2 46.2-24.3 65.5-3.6 3-7 1.4-5.4-2.6 5.2-13 16.9-42.1 11.4-49z" fill="#FF9900"/>
+            <text x="100" y="100" fill="#fff" font-size="72" font-family="Arial, sans-serif" font-weight="bold">amazon</text>
+        </svg>
+        <div class="login-box">
+            <h2>Enter Password</h2>
+            <input type="password" id="passwordInput" placeholder="Enter password">
+            <button onclick="checkPassword()">Submit</button>
+        </div>
+    </div>
+
+```
+<!-- Page 2: Welcome -->
+<div id="page2" class="page">
+    <h1>Welcome</h1>
+    <p>I knew you were my chotuuuuuu<br>aren't you Dhans?</p>
+    <div class="button-container">
+        <button class="choice-btn yes-btn" onclick="goToPage(3)">Yes</button>
+        <button class="choice-btn no-btn" onclick="wrongChoice()">No</button>
+    </div>
+</div>
+
+<!-- Page 3: Second Poems (Old Paper Style) -->
+<div id="page3" class="page book-page">
+    <div class="music-player">
+        <iframe width="280" height="80" src="https://www.youtube.com/embed/jADTdg-o8i0?autoplay=1&loop=1&playlist=jADTdg-o8i0" frameborder="0" allow="autoplay; encrypted-media"></iframe>
+    </div>
+    <div class="book-container">
+        <div class="poem-container old-paper-poem" id="poemContainer3">
+            <div class="poem active">
+                Fly me to the moon she said,<br>
+                Honey I'll bring all the stars with me I read.<br>
+                The moon reflects the sunlight that's what they say,<br>
+                But in the moon I see you when I lay.<br>
+                Stars tell me about you my love<br>
+                And I feel like you are my white dove.<br>
+                Maybe you are my moon,<br>
+                Because I want a house with you<br>
+                A house because you are my home<br>
+                And that's my modern day Rome!
+            </div>
+            <div class="poem">
+                When I see you my heart flutters,<br>
+                This girl is so gentle and lovely it mutters,<br>
+                Her words like freshly baked bread honey and butter.<br>
+                Am I enough for you is what I ask.<br>
+                Will this stupid boy ever be able to fill the empty flask!<br>
+                I don't know if you will ever understand my love even a bit,<br>
+                But honey you are my fit!
+            </div>
+        </div>
+        <button class="next-btn" onclick="nextPoem(3)">Next Poem</button>
+        <button class="next-btn" onclick="goToPage(4)">Next Page</button>
+    </div>
+    <div class="rabbit">🐰</div>
+</div>
+
+<!-- Page 4: First Poems -->
+<div id="page4" class="page book-page">
+    <div class="book-container">
+        <div class="poem-container" id="poemContainer4">
+            <div class="poem active">
+                When I see you, the world feels new,<br>
+                The skies turn brighter, a softer hue.<br>
+                No words can hold the love I feel,<br>
+                It's endless, pure, and always real.
+            </div>
+            <div class="poem">
+                Through storms and silence, near or far,<br>
+                You'll always be my guiding star.<br>
+                No matter where this life may bend,<br>
+                My love for you will never end.
+            </div>
+            <div class="poem">
+                If life is short, then let it be,<br>
+                A story written—you and me.<br>
+                So take my hand, don't let me fall,<br>
+                For you, my love, I give my all.
+            </div>
+        </div>
+        <button class="next-btn" onclick="nextPoem(4)">Next Poem</button>
+        <button class="next-btn" onclick="goToPage(5)">Next Page</button>
+    </div>
+    <div class="rabbit">🐰</div>
+</div>
+
+<!-- Page 5: Photo Gallery -->
+<div id="page5" class="page">
+    <div class="gallery-container">
+        <h2>Our Memories 💕</h2>
+        <div class="photo-slideshow">
+            <img src="photo1.jpg" class="slide active" alt="Memory 1">
+            <img src="photo2.jpg" class="slide" alt="Memory 2">
+            <img src="photo3.jpg" class="slide" alt="Memory 3">
+            <img src="photo4.jpg" class="slide" alt="Memory 4">
+            <img src="photo5.jpg" class="slide" alt="Memory 5">
+        </div>
+        <div class="slide-dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+        <div class="slide-controls">
+            <button class="slide-btn" onclick="prevSlide()">← Previous</button>
+            <button class="slide-btn" onclick="nextSlide()">Next →</button>
+        </div>
+        <button class="next-btn" onclick="goToPage(6)">Next Page</button>
+    </div>
+    <div class="rabbit">🐰</div>
+</div>
+
+<!-- Page 6: Letter -->
+<div id="page6" class="page">
+    <div class="letter-container">
+        <div class="envelope" id="envelope" onclick="openLetter()">
+            <div class="envelope-flap"></div>
+            <div class="envelope-text">Click to Open</div>
+        </div>
+        <div class="letter" id="letter">
+            <div class="letter-content" id="letterContent"></div>
+            <button class="next-btn" onclick="goToPage(7)">Next Page</button>
+        </div>
+    </div>
+    <div class="rabbit">🐰</div>
+</div>
+
+<!-- Page 7: Timer -->
+<div id="page7" class="page">
+    <h1>Waiting Since:</h1>
+    <p style="font-size: 1.5em;">May 10, 2025 at 10:30 PM</p>
+    <div class="timer-display">
+        <div class="timer-box">
+            <span class="number" id="days">0</span>
+            <span class="label">Days</span>
+        </div>
+        <div class="timer-box">
+            <span class="number" id="hours">0</span>
+            <span class="label">Hours</span>
+        </div>
+        <div class="timer-box">
+            <span class="number" id="minutes">0</span>
+            <span class="label">Minutes</span>
+        </div>
+        <div class="timer-box">
+            <span class="number" id="seconds">0</span>
+            <span class="label">Seconds</span>
+        </div>
+    </div>
+    <div class="rabbit">🐰</div>
+</div>
+
+<script>
+    // Create floating hearts
+    function createHearts() {
+        for (let i = 0; i < 15; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = '💕';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.top = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 4 + 's';
+            document.querySelector('#page3').appendChild(heart.cloneNode(true));
+            document.querySelector('#page4').appendChild(heart.cloneNode(true));
+        }
+    }
+    createHearts();
+
+    // Password check
+    function checkPassword() {
+        const password = document.getElementById('passwordInput').value;
+        if (password === '090803') {
+            goToPage(2);
+        } else {
+            alert('Sorry you lost 😢');
+        }
+    }
+
+    // Navigate pages
+    function goToPage(pageNum) {
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        document.getElementById('page' + pageNum).classList.add('active');
+    }
+
+    // Wrong choice
+    function wrongChoice() {
+        alert('Oh my bad lol 😄');
+    }
+
+    // Poem navigation
+    let currentPoem3 = 0;
+    let currentPoem4 = 0;
+
+    function nextPoem(pageNum) {
+        const container = document.getElementById('poemContainer' + pageNum);
+        const poems = container.querySelectorAll('.poem');
+        
+        if (pageNum === 3) {
+            poems[currentPoem3].classList.remove('active');
+            currentPoem3 = (currentPoem3 + 1) % poems.length;
+            poems[currentPoem3].classList.add('active');
+        } else {
+            poems[currentPoem4].classList.remove('active');
+            currentPoem4 = (currentPoem4 + 1) % poems.length;
+            poems[currentPoem4].classList.add('active');
+        }
+    }
+
+    // Photo slideshow
+    let currentSlideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlide(n) {
+        slides[currentSlideIndex].classList.remove('active');
+        dots[currentSlideIndex].classList.remove('active');
+        
+        currentSlideIndex = (n + slides.length) % slides.length;
+        
+        slides[currentSlideIndex].classList.add('active');
+        dots[currentSlideIndex].classList.add('active');
+    }
+
+    function nextSlide() {
+        showSlide(currentSlideIndex + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentSlideIndex - 1);
+    }
+
+    function currentSlide(n) {
+        showSlide(n);
+    }
+
+    // Auto-advance slideshow every 4 seconds
+    setInterval(() => {
+        if (document.getElementById('page5').classList.contains('active')) {
+            nextSlide();
+        }
+    }, 4000);
+
+    // Open letter with typewriter effect
+    function openLetter() {
+        document.getElementById('envelope').style.display = 'none';
+        document.getElementById('letter').classList.add('open');
+        
+        const letterText = "Dear Dhans, I know I've been a mess many times and I know I've not been upto the mark on many occasions but deep down inside you know how much I love you and how much I will give anything in this world just to spend some moments with you…you know I'm an idiot but only for you….so please give this idiot a chance to be happy again. Please for one and last time give me a chance- always yours tiku….";
+        const letterContent = document.getElementById('letterContent');
+        
+        const words = letterText.split(' ');
+        words.forEach((word, index) => {
+            setTimeout(() => {
+                const span = document.createElement('span');
+                span.className = 'typewriter';
+                span.textContent = word + ' ';
+                span.style.animationDelay = '0s';
+                letterContent.appendChild(span);
+            }, index * 100);
+        });
+    }
+
+    // Timer
+    function updateTimer() {
+        const startDate = new Date('2025-05-10T22:30:00');
+        const now = new Date();
+        const diff = now - startDate;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+        document.getElementById('seconds').textContent = seconds;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+</script>
+```
+
+</body>
+</html>
